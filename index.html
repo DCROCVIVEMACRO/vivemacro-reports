@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivé Macro | Global Macro Research</title>
+<meta name="description" content="Vivé Macro. Systematic cross-asset research spanning 230+ instruments across 14 asset classes, from global ETFs to the world's largest equities. Weekly quantitative scores with calculated reference levels, risk parameters, and earnings calendar data. Delivered every Monday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     RESET & FLUID SCALE
+     ============================================
+     Every measurement derives from viewport or
+     container width. No fixed breakpoints control
+     layout - only CSS math and container queries.
+     ============================================ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sand-light: #f2ede4;
+    --sand-mid: #e8e0d0;
+    --sand-dark: #ddd8cc;
+    --sand-border: #c8bfa8;
+    --dark: #1a1814;
+    --dark-mid: #2a2620;
+    --gold: #b8a882;
+    --gold-bright: #c8aa70;
+    --gold-dark: #7a6a4a;
+    --gold-glow: #d4c49a;
+    --text-body: #1a1814;
+    --text-mid: #4a4438;
+    --text-light: #9a8f7a;
+    --green: #0a8a2a;
+    --green-bg: #d4f5dd;
+    --white: #fefcf8;
+
+    --sy: clamp(60px, 8vw, 100px);
+    --sx: clamp(16px, 4vw, 48px);
+    --gap: clamp(16px, 2.5vw, 32px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--sand-dark);
+    color: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 40%, var(--sand-mid) 0%, var(--sand-dark) 70%);
+    position: relative;
+    padding: clamp(48px, 7vw, 80px) var(--sx);
+  }
+
+  /* On portrait mobile, let content dictate height instead of stretching to fill viewport */
+  @media (max-aspect-ratio: 3/4) {
+    .hero {
+      min-height: auto;
+      padding-top: clamp(60px, 12vh, 100px);
+      padding-bottom: clamp(40px, 8vh, 80px);
+    }
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8a882' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .logo-container { margin-bottom: clamp(20px, 4vw, 48px); animation: fadeUp 1.2s ease-out; }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(64px, 12vw, 140px);
+    color: var(--dark);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .logo .accent { position: relative; display: inline-block; }
+
+  .logo-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 2vw, 20px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: clamp(8px, 1.5vw, 12px);
+    animation: fadeUp 1.2s ease-out 0.2s both;
+  }
+
+  .hero-tagline {
+    max-width: min(680px, 90vw);
+    margin-top: clamp(20px, 4vw, 48px);
+    animation: fadeUp 1.2s ease-out 0.4s both;
+  }
+
+  .hero-tagline h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(19px, 2.8vw, 32px);
+    color: var(--text-body);
+    line-height: 1.5;
+    margin-bottom: clamp(14px, 2vw, 20px);
+  }
+
+  .hero-tagline p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, 1.6vw, 18px);
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: min(540px, 90vw);
+    margin: 0 auto;
+  }
+
+  .stats-ribbon {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    max-width: min(800px, 92vw);
+    margin-top: clamp(24px, 4vw, 48px);
+    padding: clamp(18px, 3vw, 32px) clamp(12px, 2vw, 24px);
+    background: var(--dark);
+    border-radius: 2px;
+    animation: fadeUp 1.2s ease-out 0.6s both;
+    gap: clamp(12px, 2vw, 24px);
+  }
+
+  .stat-item { text-align: center; flex: 1; min-width: 0; }
+
+  .stat-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 5vw, 42px);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(7px, 1.2vw, 12px);
+    letter-spacing: clamp(0.1em, 0.5vw, 0.2em);
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: clamp(4px, 0.8vw, 8px);
+  }
+
+  .hero-cta {
+    margin-top: clamp(24px, 4vw, 48px);
+    animation: fadeUp 1.2s ease-out 0.8s both;
+  }
+
+  .hero-cta a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.4vw, 14px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+    padding: clamp(12px, 1.5vw, 16px) clamp(32px, 4vw, 48px);
+    border: 1.5px solid var(--gold);
+    transition: all 0.4s ease;
+    display: inline-block;
+  }
+
+  .hero-cta a:hover { background: var(--dark); color: var(--gold); border-color: var(--dark); }
+
+  /* ============================================
+     SECTION PRIMITIVES
+     ============================================ */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.2vw, 12px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: clamp(14px, 2vw, 20px);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3.8vw, 40px);
+    color: var(--dark);
+    margin-bottom: clamp(20px, 3vw, 32px);
+    line-height: 1.3;
+  }
+
+  /* ============================================
+     METHODOLOGY / VALUE SECTIONS
+     ============================================ */
+  .methodology {
+    padding: var(--sy) var(--sx);
+    background: var(--sand-light);
+    text-align: center;
+  }
+
+  .methodology-inner {
+    max-width: min(720px, 90vw);
+    margin: 0 auto;
+  }
+
+  .methodology p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: clamp(14px, 2vw, 20px);
+  }
+
+  /* -----------------------------------------------
+     CARD GRID - FLEXBOX WRAP
+     Each card has a preferred width (flex-basis).
+     Cards grow to fill rows, but max-width caps them
+     so they never stretch into ugly wide blocks.
+     Orphans center naturally via justify-content.
+     ----------------------------------------------- */
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gap);
+    margin-top: clamp(32px, 5vw, 48px);
+    max-width: min(960px, 92vw);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .card-grid > .method-card {
+    flex: 1 1 380px;
+    min-width: min(380px, 100%);
+    max-width: 460px;
+  }
+
+  .method-card {
+    padding: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
+    border-top: 2px solid var(--gold);
+    background: var(--white);
+  }
+
+  .method-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.3vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-bottom: clamp(8px, 1.2vw, 12px);
+  }
+
+  .method-card p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.4vw, 15px);
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 0;
+  }
+
+  /* ============================================
+     PRICING
+     ============================================ */
+  .pricing {
+    padding: var(--sy) var(--sx);
+    background: var(--dark);
+    position: relative;
+  }
+
+  .pricing::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .pricing-header { text-align: center; margin-bottom: clamp(48px, 7vw, 80px); }
+  .pricing-header .section-label { color: var(--gold); }
+  .pricing-header .section-title { color: var(--sand-light); }
+
+  .pricing-header p {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--text-light);
+    max-width: min(540px, 90vw);
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Billing toggle */
+  .billing-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 16px);
+    margin-bottom: clamp(32px, 5vw, 48px);
+    flex-wrap: wrap;
+  }
+
+  .billing-toggle span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(12px, 1.4vw, 14px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .billing-toggle span.active { color: var(--gold); }
+
+  .toggle-switch {
+    width: 52px; height: 28px;
+    background: var(--dark-mid);
+    border: 1px solid var(--gold-dark);
+    border-radius: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-switch.annual::after { transform: translateX(24px); }
+
+  .save-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 4px 10px;
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .save-badge.visible { opacity: 1; }
+
+  /* -----------------------------------------------
+     PRICING GRID - CONTAINER QUERY
+     The grid asks its own container how wide it is.
+     Wide enough for 3? → 3 columns.
+     Not? → 1 column, centered, capped width.
+     Skips the 2-column orphan state entirely.
+     ----------------------------------------------- */
+  .pricing-container {
+    container-type: inline-size;
+    max-width: min(1080px, 94vw);
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: min(440px, 100%);
+    margin: 0 auto;
+    gap: clamp(12px, 2vw, 16px);
+  }
+
+  @container (min-width: 780px) {
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+      gap: 0;
+    }
+  }
+
+  .pricing-card {
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px);
+    background: var(--dark-mid);
+    border: 1px solid rgba(184, 168, 130, 0.15);
+    position: relative;
+    transition: border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover { border-color: rgba(184, 168, 130, 0.4); z-index: 2; }
+
+  .pricing-card.featured {
+    background: linear-gradient(180deg, #2e2a22 0%, var(--dark-mid) 100%);
+    border-color: var(--gold-dark);
+  }
+
+  .pricing-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--dark);
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+    padding: 8px 0;
+  }
+
+  .tier-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(22px, 2.5vw, 26px);
+    color: var(--sand-light);
+    margin-bottom: 8px;
+  }
+
+  .tier-desc {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.3vw, 14px);
+    color: var(--text-light);
+    margin-bottom: clamp(20px, 3vw, 32px);
+    line-height: 1.5;
+  }
+
+  .tier-price { margin-bottom: clamp(20px, 3vw, 32px); }
+
+  .price-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 5vw, 52px);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-amount .currency {
+    font-size: clamp(20px, 2.5vw, 28px);
+    vertical-align: top;
+    margin-right: 2px;
+    position: relative;
+    top: clamp(3px, 0.5vw, 6px);
+  }
+
+  .price-period {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: clamp(12px, 1.3vw, 14px);
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin-top: 6px;
+  }
+
+  .annual-equiv {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--gold-dark);
+    margin-top: 4px;
+    min-height: 18px;
+  }
+
+  .tier-features {
+    list-style: none;
+    margin-bottom: clamp(24px, 3.5vw, 40px);
+    flex-grow: 1;
+  }
+
+  .tier-features li {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.3vw, 15px);
+    color: #b5ad9e;
+    padding: clamp(7px, 1vw, 10px) 0;
+    border-bottom: 1px solid rgba(184, 168, 130, 0.08);
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(8px, 1vw, 12px);
+    line-height: 1.5;
+  }
+
+  .tier-features li::before { content: '\2022'; color: var(--gold); flex-shrink: 0; font-weight: 500; }
+
+  .tier-btn {
+    display: block;
+    width: 100%;
+    padding: clamp(12px, 1.5vw, 16px) 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.3vw, 14px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    border: 1.5px solid var(--gold-dark);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .tier-btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .pricing-card.featured .tier-btn { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .pricing-card.featured .tier-btn:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+
+  /* ============================================
+     ASSET CLASSES
+     ============================================ */
+  .coverage {
+    padding: var(--sy) var(--sx);
+    background: var(--sand-light);
+    text-align: center;
+  }
+
+  .coverage-inner { max-width: min(960px, 92vw); margin: 0 auto; }
+
+  .asset-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(8px, 1.2vw, 12px);
+    margin-top: clamp(32px, 5vw, 48px);
+  }
+
+  .asset-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(11px, 1.2vw, 13px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    padding: clamp(8px, 1vw, 10px) clamp(14px, 1.8vw, 20px);
+    border: 1px solid var(--sand-border);
+    background: var(--white);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .asset-tag:hover { border-color: var(--gold); color: var(--dark); }
+
+  /* ============================================
+     CTA
+     ============================================ */
+  .final-cta {
+    padding: clamp(64px, 9vw, 120px) var(--sx);
+    background: var(--sand-mid);
+    text-align: center;
+    position: relative;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sand-border), transparent);
+  }
+
+  .final-cta .logo-sm {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 48px);
+    color: var(--dark);
+    margin-bottom: clamp(16px, 2.5vw, 24px);
+  }
+
+  .final-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(20px, 2.8vw, 30px);
+    color: var(--text-body);
+    margin-bottom: clamp(32px, 5vw, 48px);
+    line-height: 1.5;
+  }
+
+  .final-cta a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.4vw, 14px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    padding: clamp(14px, 1.8vw, 18px) clamp(36px, 5vw, 56px);
+    background: var(--dark);
+    border: 1.5px solid var(--dark);
+    transition: all 0.4s ease;
+    display: inline-block;
+  }
+
+  .final-cta a:hover { background: transparent; color: var(--dark); }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  footer {
+    padding: clamp(32px, 5vw, 48px) var(--sx);
+    background: var(--dark);
+    text-align: center;
+    border-top: 1px solid rgba(184, 168, 130, 0.15);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--gold);
+    margin-bottom: clamp(12px, 1.5vw, 16px);
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, 32px);
+    margin-bottom: clamp(16px, 2vw, 24px);
+  }
+
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: clamp(10px, 1.1vw, 12px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-disclaimer {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-size: clamp(10px, 1.1vw, 12px);
+    color: rgba(154, 143, 122, 0.6);
+    max-width: min(600px, 90vw);
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ============================================
+     ANIMATIONS & SCROLL REVEAL
+     ============================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 1; transform: translateY(0); }
+  .js-ready .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ============================================
+     TOUCH & ACCESSIBILITY
+     No layout breakpoints - only interaction
+     ============================================ */
+  @media (hover: none) {
+    .pricing-card:hover { border-color: rgba(184, 168, 130, 0.15); }
+    .pricing-card.featured:hover { border-color: var(--gold-dark); }
+  }
+
+  /* ============================================
+     CASE STUDIES
+     ============================================ */
+  .case-studies {
+    background: var(--sand-light);
+    padding: var(--sy) var(--sx);
+  }
+  .cs-inner {
+    max-width: min(1080px, 92vw);
+    margin: 0 auto;
+  }
+  .cs-header {
+    text-align: center;
+    margin-bottom: clamp(32px, 5vh, 56px);
+  }
+  .cs-subtitle {
+    font-size: clamp(14px, 1.1vw, 17px);
+    color: var(--text-mid);
+    margin-top: 12px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cs-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(6px, 1vw, 12px);
+    margin-bottom: clamp(28px, 4vh, 44px);
+  }
+  .cs-tab {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(12px, 1vw, 15px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: clamp(8px, 1.2vh, 12px) clamp(16px, 2.5vw, 28px);
+    background: none;
+    border: 1px solid rgba(184,168,130,0.15);
+    border-radius: 4px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .cs-tab:hover { border-color: var(--gold); color: var(--dark); }
+  .cs-tab.active {
+    background: var(--dark);
+    border-color: var(--dark);
+    color: var(--gold);
+  }
+  .cs-panel { display: none; }
+  .cs-panel.active { display: block; }
+  .cs-asset-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1.5vw, 16px);
+    margin-bottom: clamp(6px, 1vh, 10px);
+  }
+  .cs-asset-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .cs-asset-class {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 0.85vw, 13px);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    padding: 3px 10px;
+    background: rgba(184,168,130,0.15);
+    border-radius: 3px;
+  }
+  .cs-period {
+    font-size: clamp(13px, 0.95vw, 15px);
+    color: var(--text-mid);
+    margin-bottom: clamp(24px, 3vh, 36px);
+  }
+  .cs-headlines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, 20px);
+    margin-bottom: clamp(28px, 4vh, 40px);
+  }
+  .cs-headline-card {
+    flex: 1 1 clamp(130px, 18vw, 180px);
+    background: var(--dark);
+    border-radius: 6px;
+    padding: clamp(14px, 2vw, 22px);
+    text-align: center;
+  }
+  .cs-headline-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+  .cs-headline-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.7vw, 11px);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(232,224,208,0.5);
+    margin-top: 6px;
+  }
+  .cs-comparison { margin-bottom: clamp(28px, 4vh, 40px); }
+  .cs-comp-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(12px, 0.9vw, 14px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .cs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(13px, 0.95vw, 15px);
+  }
+  .cs-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: clamp(11px, 0.8vw, 13px);
+    padding: 10px clamp(10px, 1.5vw, 18px);
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+    color: var(--dark);
+  }
+  .cs-table th:not(:first-child) { text-align: right; }
+  .cs-table td {
+    padding: 10px clamp(10px, 1.5vw, 18px);
+    border-bottom: 1px solid rgba(184,168,130,0.15);
+    color: var(--text-mid);
+  }
+  .cs-table td:not(:first-child) { text-align: right; }
+  .cs-table td:first-child { font-weight: 500; color: var(--dark); }
+  .cs-table tr:last-child td { border-bottom: none; }
+  .cs-table .highlight-row td { background: rgba(184,168,130,0.06); font-weight: 600; color: var(--dark); }
+  .cs-val-positive { color: var(--green); font-weight: 600; }
+  .cs-val-negative { color: #c41010; font-weight: 600; }
+  .cs-val-gold { color: var(--gold); font-weight: 600; }
+  .cs-trades { margin-bottom: clamp(28px, 4vh, 40px); }
+  .cs-trade-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cs-trade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(12px, 0.85vw, 14px);
+  }
+  .cs-trade-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: clamp(10px, 0.7vw, 12px);
+    padding: 8px clamp(6px, 1vw, 14px);
+    text-align: right;
+    border-bottom: 2px solid var(--gold);
+    color: var(--dark);
+    white-space: nowrap;
+  }
+  .cs-trade-table th:first-child,
+  .cs-trade-table th:nth-child(2) { text-align: left; }
+  .cs-trade-table td {
+    padding: 8px clamp(6px, 1vw, 14px);
+    border-bottom: 1px solid rgba(184,168,130,0.1);
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--text-mid);
+  }
+  .cs-trade-table td:first-child,
+  .cs-trade-table td:nth-child(2) { text-align: left; }
+  .cs-trade-table .trade-win { color: var(--green); font-weight: 600; }
+  .cs-trade-table .trade-loss { color: #c41010; font-weight: 600; }
+  .cs-insight {
+    background: var(--dark);
+    border-radius: 6px;
+    padding: clamp(20px, 3vw, 32px);
+    margin-bottom: clamp(12px, 2vh, 20px);
+  }
+  .cs-insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 0.75vw, 12px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .cs-insight-text {
+    font-size: clamp(14px, 1.1vw, 17px);
+    color: rgba(232,224,208,0.85);
+    line-height: 1.7;
+  }
+  .cs-disclaimer {
+    font-size: clamp(10px, 0.75vw, 12px);
+    color: rgba(42,38,32,0.4);
+    text-align: center;
+    margin-top: clamp(28px, 4vh, 40px);
+    line-height: 1.5;
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (hover: none) {
+    .cs-tab:hover { border-color: rgba(184,168,130,0.15); color: var(--text-mid); }
+  }
+</style>
+</head>
+<body>
+
+  <a href="https://portal.vivemacro.com" style="position:fixed;top:clamp(12px,2vw,18px);right:clamp(14px,2.5vw,24px);z-index:9999;font-family:'Barlow Condensed',sans-serif;font-size:clamp(11px,1.2vw,13px);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#b8a882;text-decoration:none;padding:6px 16px;border:1px solid rgba(184,168,130,0.25);border-radius:4px;transition:all 0.2s;background:rgba(26,24,20,0.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);" onmouseover="this.style.borderColor='#b8a882';this.style.color='#f2ede4'" onmouseout="this.style.borderColor='rgba(184,168,130,0.25)';this.style.color='#b8a882'">Member Login</a>
+
+  <section class="hero">
+    <div class="logo-container">
+      <div class="logo">viv<span class="accent">é</span></div>
+      <div class="logo-sub">Macro</div>
+    </div>
+    <div class="hero-tagline">
+      <h2>Systematic research across global markets. Data-driven, every Monday.</h2>
+      <p>A proprietary cross-asset framework scanning 230+ instruments across global macro ETFs and the world's largest equities. Every instrument is scored, ranked, and published with calculated reference levels, risk parameters, and earnings calendar data. Process-driven quantitative research with no discretionary opinions.</p>
+    </div>
+    <div class="stats-ribbon">
+      <div class="stat-item"><div class="stat-number">230+</div><div class="stat-label">Instruments Scanned</div></div>
+      <div class="stat-item"><div class="stat-number">14</div><div class="stat-label">Asset Classes</div></div>
+      <div class="stat-item"><div class="stat-number">52</div><div class="stat-label">Reports Per Annum</div></div>
+    </div>
+    <div class="hero-cta"><a href="#pricing">View Memberships</a></div>
+  </section>
+
+  <section class="methodology">
+    <div class="methodology-inner reveal">
+      <div class="section-label">Our Approach</div>
+      <h3 class="section-title">Systematic conviction, not discretionary opinion</h3>
+      <p>Vivé Macro applies a proprietary quantitative framework across the full global investable universe, covering macro ETFs spanning every asset class, plus the 50 most liquid US large-cap equities. Every instrument is scored, ranked, and filtered through the same disciplined process, producing systematic data outputs with no forecasts and no discretionary opinions.</p>
+      <p>The result is a weekly research publication where every scored instrument is presented with calculated reference levels, structural risk parameters, a risk-calibrated price target, and an earnings calendar overlay. Subscribers receive the same depth of quantitative data that institutional research desks produce internally. All investment decisions remain solely with the subscriber.</p>
+    </div>
+    <div class="card-grid reveal">
+      <div class="method-card"><h4>Instrument Screening</h4><p>A disciplined, multi-factor screening process applied across 230+ instruments weekly. Momentum analysis, structural trend confirmation, and conviction scoring identify the highest-ranked instruments by quantitative criteria.</p></div>
+      <div class="method-card"><h4>Quantitative Output</h4><p>Every scored instrument includes calculated reference levels for entry, stop loss, and target, all derived from actual price structure rather than arbitrary percentages. Position sizing parameters are provided relative to user-defined portfolio inputs for informational purposes.</p></div>
+      <div class="method-card"><h4>Earnings Intelligence</h4><p>Our system cross-references every scored instrument against the earnings calendar. When a binary event approaches, the data flags it in advance, providing relevant calendar dates and historical volatility context for the subscriber's own analysis.</p></div>
+      <div class="method-card"><h4>Exit Discipline</h4><p>Previously scored instruments are monitored continuously and updated assessments are published with the same systematic discipline as initial scores. When quantitative conditions change, the data reflects it in real time.</p></div>
+    </div>
+  </section>
+
+  <section class="methodology" style="background: var(--dark);">
+    <div class="methodology-inner reveal">
+      <div class="section-label" style="color: var(--gold);">What You Get</div>
+      <h3 class="section-title" style="color: var(--sand-light);">Institutional-grade quantitative research, accessible for the first time</h3>
+      <p style="color: var(--sand-mid);">Vivé Macro delivers a systematic quantitative framework that scores and ranks 230+ instruments across every major market, publishing calculated reference levels, risk parameters, and earnings calendar data every Monday. One weekly research publication replaces hours of manual screening.</p>
+    </div>
+    <div class="card-grid reveal">
+      <div class="method-card" style="background: rgba(184, 168, 130, 0.06); border-color: rgba(184, 168, 130, 0.15);"><h4 style="color: var(--gold);">230+ Instruments. One Scan.</h4><p style="color: var(--sand-mid);">US large-cap equities, global indices, sector ETFs, precious metals, energy, agriculture, bonds, currencies, and digital assets, all scored and ranked through one systematic framework every week. Comprehensive cross-asset coverage.</p></div>
+      <div class="method-card" style="background: rgba(184, 168, 130, 0.06); border-color: rgba(184, 168, 130, 0.15);"><h4 style="color: var(--gold);">Calculated Reference Levels</h4><p style="color: var(--sand-mid);">Every scored instrument is published with calculated reference levels for entry, stop loss, and target, all derived from actual price structure rather than arbitrary percentages. Risk parameters are quantified in dollar terms for informational purposes.</p></div>
+      <div class="method-card" style="background: rgba(184, 168, 130, 0.06); border-color: rgba(184, 168, 130, 0.15);"><h4 style="color: var(--gold);">Earnings Intelligence</h4><p style="color: var(--sand-mid);">Our system cross-references every scored instrument against the earnings calendar. When a binary event is approaching, the data flags it with relevant dates and historical context. Earnings-aware research for informed decision-making.</p></div>
+      <div class="method-card" style="background: rgba(184, 168, 130, 0.06); border-color: rgba(184, 168, 130, 0.15);"><h4 style="color: var(--gold);">Portfolio-Calibrated Sizing</h4><p style="color: var(--sand-mid);">Enter a reference portfolio size. The system calculates illustrative position sizing parameters, including share quantities, dollar exposure, and risk metrics per instrument. A quantitative tool for the subscriber's own portfolio analysis.</p></div>
+    </div>
+  </section>
+
+
+  <section class="case-studies">
+    <div class="cs-inner reveal">
+      <div class="cs-header">
+        <div class="section-label">Historical Performance</div>
+        <h3 class="section-title">Framework in Practice</h3>
+        <p class="cs-subtitle">Backtested results across distinct asset classes. All figures based on $10,000 starting capital with no leverage. Trades executed at weekly close prices.</p>
+      </div>
+      <div class="cs-tabs">
+        <button class="cs-tab active" onclick="switchCS('gold',this)">Gold</button>
+        <button class="cs-tab" onclick="switchCS('bitcoin',this)">Bitcoin</button>
+        <button class="cs-tab" onclick="switchCS('nasdaq',this)">Nasdaq 100</button>
+      </div>
+
+      <div class="cs-panel active" id="cs-gold">
+        <div class="cs-asset-header">
+          <h3 class="cs-asset-name">XAUUSD - Gold</h3>
+          <span class="cs-asset-class">Precious Metals</span>
+        </div>
+        <p class="cs-period">January 2020 to February 2026 (6.1 years) - 4 trades</p>
+        <div class="cs-headlines">
+          <div class="cs-headline-card"><div class="cs-headline-value">+205.7%</div><div class="cs-headline-label">Total Return</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">+20.1%</div><div class="cs-headline-label">CAGR</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">1.19</div><div class="cs-headline-label">Sharpe Ratio</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">~60%</div><div class="cs-headline-label">Time in Market</div></div>
+        </div>
+        <div class="cs-comparison">
+          <div class="cs-comp-title">Framework vs Benchmark</div>
+          <table class="cs-table">
+            <thead><tr><th>Metric</th><th>DROC Gold</th><th>S&amp;P 500</th></tr></thead>
+            <tbody>
+              <tr><td>Starting capital</td><td>$10,000</td><td>$10,000</td></tr>
+              <tr class="highlight-row"><td>Ending capital</td><td class="cs-val-gold">$30,574</td><td>$18,948</td></tr>
+              <tr><td>Total return</td><td class="cs-val-positive">+205.7%</td><td>+89.5%</td></tr>
+              <tr><td>CAGR</td><td class="cs-val-positive">+20.1%</td><td>+11.0%</td></tr>
+              <tr><td>Sharpe ratio</td><td class="cs-val-positive">1.19</td><td>0.44</td></tr>
+              <tr><td>Total trades</td><td>4</td><td>Buy and Hold</td></tr>
+              <tr><td>Time in market</td><td>~60%</td><td>100%</td></tr>
+              <tr><td>Worst year</td><td class="cs-val-positive">None</td><td class="cs-val-negative">-18.1% (2022)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cs-trades">
+          <div class="cs-comp-title">Trade Log</div>
+          <div class="cs-trade-scroll">
+            <table class="cs-trade-table">
+              <thead><tr><th>#</th><th>Entry</th><th>Exit</th><th>Entry $</th><th>Exit $</th><th>Return</th><th>Weeks</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Jan 2020</td><td>Nov 2020</td><td>1,552.39</td><td>1,878.95</td><td class="trade-win">+20.8%</td><td>43</td><td class="trade-win">WIN</td></tr>
+                <tr><td>2</td><td>Nov 2022</td><td>Aug 2023</td><td>1,750.87</td><td>1,913.82</td><td class="trade-win">+9.1%</td><td>38</td><td class="trade-win">WIN</td></tr>
+                <tr><td>3</td><td>Jan 2024</td><td>Dec 2024</td><td>2,029.62</td><td>2,648.86</td><td class="trade-win">+30.3%</td><td>47</td><td class="trade-win">WIN</td></tr>
+                <tr><td>4</td><td>Feb 2025</td><td>Present</td><td>2,861.84</td><td>5,108.26</td><td class="trade-win">+78.1%</td><td>53</td><td class="trade-win">OPEN</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cs-insight">
+          <div class="cs-insight-label">Key Finding</div>
+          <p class="cs-insight-text">Over 6.1 years, the framework delivered 2.3x the return of the S&amp;P 500 while being invested only 60% of the time. It produced no losing year while buy-and-hold S&amp;P 500 investors suffered an 18.1% drawdown in 2022. The Sharpe ratio of 1.19 indicates the return was achieved with substantially lower risk per unit of gain, and the framework outperformed the S&amp;P 500 by 9.0% annually on a compounded basis.</p>
+        </div>
+      </div>
+
+      <div class="cs-panel" id="cs-bitcoin">
+        <div class="cs-asset-header">
+          <h3 class="cs-asset-name">BTC-USD - Bitcoin</h3>
+          <span class="cs-asset-class">Digital Assets</span>
+        </div>
+        <p class="cs-period">June 2019 to December 2025 (6.5 years) - 3 trades</p>
+        <div class="cs-headlines">
+          <div class="cs-headline-card"><div class="cs-headline-value">+975.9%</div><div class="cs-headline-label">Total Return</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">+44.0%</div><div class="cs-headline-label">CAGR</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">1.09</div><div class="cs-headline-label">Sharpe Ratio</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">100%</div><div class="cs-headline-label">Win Rate</div></div>
+        </div>
+        <div class="cs-comparison">
+          <div class="cs-comp-title">Framework vs Buy and Hold</div>
+          <table class="cs-table">
+            <thead><tr><th>Metric</th><th>DROC Bitcoin</th><th>Buy and Hold</th></tr></thead>
+            <tbody>
+              <tr><td>Starting capital</td><td>$10,000</td><td>$10,000</td></tr>
+              <tr class="highlight-row"><td>Ending capital</td><td class="cs-val-gold">$107,587</td><td>$94,475</td></tr>
+              <tr><td>Total return</td><td class="cs-val-positive">+975.9%</td><td>+844.8%</td></tr>
+              <tr><td>CAGR</td><td class="cs-val-positive">+44.0%</td><td>+41.1%</td></tr>
+              <tr><td>Sharpe ratio</td><td class="cs-val-positive">1.09</td><td>0.60</td></tr>
+              <tr><td>Total trades</td><td>3</td><td>Buy and Hold</td></tr>
+              <tr><td>Win rate</td><td>100%</td><td>-</td></tr>
+              <tr><td>Time in market</td><td>79%</td><td>100%</td></tr>
+              <tr><td>2022 drawdown</td><td class="cs-val-positive">Not invested</td><td class="cs-val-negative">-61.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cs-trades">
+          <div class="cs-comp-title">Trade Log</div>
+          <div class="cs-trade-scroll">
+            <table class="cs-trade-table">
+              <thead><tr><th>#</th><th>Entry</th><th>Exit</th><th>Entry $</th><th>Exit $</th><th>Return</th><th>Weeks</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Jun 2019</td><td>Jul 2020</td><td>9,273.52</td><td>9,525.36</td><td class="trade-win">+2.7%</td><td>57</td><td class="trade-win">WIN</td></tr>
+                <tr><td>2</td><td>Aug 2020</td><td>Mar 2022</td><td>11,758.28</td><td>42,892.96</td><td class="trade-win">+264.8%</td><td>83</td><td class="trade-win">WIN</td></tr>
+                <tr><td>3</td><td>Jun 2023</td><td>Dec 2025</td><td>30,514.17</td><td>87,611.96</td><td class="trade-win">+187.1%</td><td>129</td><td class="trade-win">WIN</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cs-insight">
+          <div class="cs-insight-label">Key Finding</div>
+          <p class="cs-insight-text">Bitcoin is one of the most volatile major assets in the world. Buy-and-hold investors experienced a 61.3% drawdown in 2022. The framework exited in March 2022, before the collapse, and did not re-enter until June 2023. The result: higher absolute returns than buy-and-hold ($107,587 vs $94,475), a Sharpe ratio nearly double (1.09 vs 0.60), and 100% of trades were profitable across a 6.5-year period. Three trades. Zero losses.</p>
+        </div>
+      </div>
+
+      <div class="cs-panel" id="cs-nasdaq">
+        <div class="cs-asset-header">
+          <h3 class="cs-asset-name">QQQ - Nasdaq 100</h3>
+          <span class="cs-asset-class">US Technology</span>
+        </div>
+        <p class="cs-period">October 2009 to February 2026 (16.3 years) - 5 trades</p>
+        <div class="cs-headlines">
+          <div class="cs-headline-card"><div class="cs-headline-value">+1,077%</div><div class="cs-headline-label">Total Return</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">0.80</div><div class="cs-headline-label">Sharpe Ratio</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">-1.8%</div><div class="cs-headline-label">Max Single Loss</div></div>
+          <div class="cs-headline-card"><div class="cs-headline-value">170.7</div><div class="cs-headline-label">Profit Factor</div></div>
+        </div>
+        <div class="cs-comparison">
+          <div class="cs-comp-title">Framework vs Buy and Hold</div>
+          <table class="cs-table">
+            <thead><tr><th>Metric</th><th>DROC Nasdaq</th><th>Buy and Hold</th></tr></thead>
+            <tbody>
+              <tr><td>Starting capital</td><td>$10,000</td><td>$10,000</td></tr>
+              <tr><td>Ending capital</td><td>$117,685</td><td>$160,719</td></tr>
+              <tr><td>Total return</td><td>+1,076.8%</td><td>+1,507.2%</td></tr>
+              <tr><td>CAGR</td><td>+16.3%</td><td>+18.5%</td></tr>
+              <tr class="highlight-row"><td>Sharpe ratio</td><td class="cs-val-positive">0.80</td><td>0.73</td></tr>
+              <tr><td>Total trades</td><td>5</td><td>Buy and Hold</td></tr>
+              <tr><td>Win rate</td><td>75%</td><td>-</td></tr>
+              <tr class="highlight-row"><td>Maximum single loss</td><td class="cs-val-positive">-1.8%</td><td class="cs-val-negative">-31.9% (2022)</td></tr>
+              <tr><td>Profit factor</td><td class="cs-val-gold">170.7</td><td>-</td></tr>
+              <tr><td>Avg winner duration</td><td>259 weeks</td><td>-</td></tr>
+              <tr><td>Avg loser duration</td><td>5 weeks</td><td>-</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cs-trades">
+          <div class="cs-comp-title">Trade Log</div>
+          <div class="cs-trade-scroll">
+            <table class="cs-trade-table">
+              <thead><tr><th>#</th><th>Entry</th><th>Exit</th><th>Entry $</th><th>Exit $</th><th>Return</th><th>Weeks</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Oct 2009</td><td>Feb 2016</td><td>37.42</td><td>91.17</td><td class="trade-win">+143.6%</td><td>329</td><td class="trade-win">WIN</td></tr>
+                <tr><td>2</td><td>Mar 2016</td><td>May 2016</td><td>99.86</td><td>99.32</td><td class="trade-loss">-0.5%</td><td>9</td><td class="trade-loss">LOSS</td></tr>
+                <tr><td>3</td><td>Jun 2016</td><td>Jun 2016</td><td>99.34</td><td>97.55</td><td class="trade-loss">-1.8%</td><td>1</td><td class="trade-loss">LOSS</td></tr>
+                <tr><td>4</td><td>Jul 2016</td><td>May 2022</td><td>104.57</td><td>294.79</td><td class="trade-win">+181.9%</td><td>304</td><td class="trade-win">WIN</td></tr>
+                <tr><td>5</td><td>May 2023</td><td>Present</td><td>342.76</td><td>601.41</td><td class="trade-win">+75.5%</td><td>144</td><td class="trade-win">OPEN</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cs-insight">
+          <div class="cs-insight-label">Key Finding</div>
+          <p class="cs-insight-text">Over 16 years, the framework turned $10,000 into $117,685 on the Nasdaq 100, compared to $160,719 for buy-and-hold. The absolute return is lower. What the framework delivered instead was protection: a maximum loss on any single trade of just 1.8%, versus buy-and-hold investors absorbing a 31.9% drawdown in 2022. For every $1 lost, $170.70 was gained. Winning trades averaged nearly 5 years in duration. Losing trades averaged 5 weeks. The framework held through the full trend and exited bad trades almost immediately, delivering a higher Sharpe ratio (0.80 vs 0.73) with far greater capital preservation.</p>
+        </div>
+      </div>
+
+      <p class="cs-disclaimer">All figures represent backtested hypothetical performance based on historical weekly price data. Backtested results do not represent actual trading and do not guarantee future performance. Trades are executed at weekly closing prices with no slippage or transaction costs applied. Starting capital of $10,000 with full position sizing and no leverage. Past performance is not indicative of future results. All investment involves risk of loss.</p>
+    </div>
+  </section>
+  <script>function switchCS(id,btn){var t=document.querySelectorAll('.cs-tab'),p=document.querySelectorAll('.cs-panel');for(var i=0;i<t.length;i++)t[i].classList.remove('active');for(var i=0;i<p.length;i++)p[i].classList.remove('active');if(btn)btn.classList.add('active');var e=document.getElementById('cs-'+id);if(e)e.classList.add('active');}</script>
+
+  <section class="pricing" id="pricing">
+    <div class="pricing-header reveal">
+      <div class="section-label">Membership</div>
+      <h3 class="section-title">Tailored to your requirements</h3>
+      <p>From weekly quantitative research to advanced analytical tools and institutional-grade publications.</p>
+    </div>
+    <div class="billing-toggle reveal">
+      <span class="toggle-label monthly active" onclick="setBilling('monthly')">Monthly</span>
+      <div class="toggle-switch" onclick="toggleBilling()"></div>
+      <span class="toggle-label annual" onclick="setBilling('annual')">Annual</span>
+      <span class="save-badge">1 Month Free</span>
+    </div>
+    <div class="pricing-container reveal">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="tier-name">Standard</div>
+          <div class="tier-desc">The full weekly research publication covering 230+ instruments across 14 asset classes, delivered every Monday.</div>
+          <div class="tier-price"><div class="price-amount" data-monthly="125" data-annual="1,375"><span class="currency">$</span>125</div><div class="price-period">per month</div><div class="annual-equiv"></div></div>
+          <ul class="tier-features">
+            <li>230+ instruments scanned, scored, and ranked every Monday</li>
+            <li>14 asset classes including 50 US large-cap equities</li>
+            <li>Proprietary scoring framework identifies the highest-ranked instruments by quantitative criteria</li>
+            <li>Ongoing score updates with systematic reassessment discipline</li>
+            <li>Cross-asset macro commentary and market context</li>
+            <li>Secure client portal with interactive report access</li>
+          </ul>
+          <a href="#" class="tier-btn" data-tier="standard">Subscribe</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="tier-name">Advanced</div>
+          <div class="tier-desc">Advanced quantitative research with calculated reference levels, position sizing tools, earnings calendar integration, and portfolio analytics.</div>
+          <div class="tier-price"><div class="price-amount" data-monthly="250" data-annual="2,750"><span class="currency">$</span>250</div><div class="price-period">per month</div><div class="annual-equiv"></div></div>
+          <ul class="tier-features">
+            <li>Everything in Standard</li>
+            <li>Calculated reference levels for entry, stop loss, and target on every scored instrument</li>
+            <li>Illustrative position sizing calculator based on user-defined portfolio parameters</li>
+            <li>Earnings calendar overlay flagging upcoming binary events across all scored instruments</li>
+            <li>Interactive Brokers data integration for streamlined reference and analysis</li>
+            <li>Personal portfolio tracker with performance monitoring tools</li>
+            <li>Portfolio exposure dashboard with asset class and sector concentration analysis</li>
+          </ul>
+          <a href="#" class="tier-btn" data-tier="advanced">Subscribe</a>
+        </div>
+        <div class="pricing-card">
+          <div class="tier-name">Institutional</div>
+          <div class="tier-desc">Everything in Advanced plus curated macro intelligence, original institutional research, and dedicated Research Desk access.</div>
+          <div class="tier-price"><div class="price-amount" data-monthly="500" data-annual="5,500"><span class="currency">$</span>500</div><div class="price-period">per month</div><div class="annual-equiv"></div></div>
+          <ul class="tier-features">
+            <li>Everything in Advanced</li>
+            <li>Weekly curated macro research brief with thematic annotations</li>
+            <li>Original institutional research reports enclosed with every brief</li>
+            <li>Direct Research Desk access for bespoke quantitative analysis and Q&amp;A</li>
+            <li>Custom instrument and sector coverage on request</li>
+            <li>Priority response and dedicated relationship management</li>
+          </ul>
+          <a href="#" class="tier-btn" data-tier="institutional">Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage">
+    <div class="coverage-inner reveal">
+      <div class="section-label">Global Coverage</div>
+      <h3 class="section-title">14 asset classes. 230+ instruments. One framework.</h3>
+      <div class="asset-grid">
+        <span class="asset-tag">US Large Cap Equities</span>
+        <span class="asset-tag">US Equity Indices</span>
+        <span class="asset-tag">US Sectors</span>
+        <span class="asset-tag">European Equities</span>
+        <span class="asset-tag">Asian Equities</span>
+        <span class="asset-tag">Emerging Markets</span>
+        <span class="asset-tag">Precious Metals</span>
+        <span class="asset-tag">Energy Commodities</span>
+        <span class="asset-tag">Agriculture</span>
+        <span class="asset-tag">Industrial Commodities</span>
+        <span class="asset-tag">Government Bonds</span>
+        <span class="asset-tag">Corporate Credit</span>
+        <span class="asset-tag">Currencies</span>
+        <span class="asset-tag">Digital Assets</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="reveal">
+      <div class="logo-sm">vivé</div>
+      <h3>230+ instruments, calculated reference levels, earnings-aware, and process-driven.</h3>
+      <a href="#pricing">Begin Membership</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">vivé macro</div>
+    <div class="footer-links">
+      <a href="#pricing">Pricing</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="risk.html">Risk Disclaimer</a>
+      <a href="https://portal.vivemacro.com">Member Login</a>
+      <a href="/cdn-cgi/l/email-protection#462f28202906302f30232b272534296825292b">Contact</a>
+    </div>
+    <div class="footer-disclaimer">
+      <strong>Important Disclaimer:</strong> Vivé Macro Ltd. provides quantitative research, systematic data analysis, and informational publications for educational and informational purposes only. The content delivered through our reports, portal, and communications does not constitute investment advice, financial advice, financial recommendations, trading advice, or any other form of professional advice. Vivé Macro Ltd. is not a registered investment adviser, broker-dealer, financial planner, or licensed financial services provider. Vivé Macro Ltd. is not licensed by the UAE Capital Market Authority (CMA), the Dubai Financial Services Authority (DFSA), the Financial Services Regulatory Authority (FSRA), or any other financial regulatory authority. The scores, reference levels, risk parameters, targets, and other data points generated by our proprietary framework are outputs of a quantitative model published for informational purposes and should not be interpreted as personalised recommendations to buy, sell, or hold any security, financial instrument, or virtual asset. Subscribers are solely responsible for their own investment decisions. Past performance of any model, methodology, or analytical output is not indicative of future results. Trading and investing in financial instruments involves substantial risk of loss and is not suitable for all persons. You should consult with a qualified and appropriately licensed financial adviser before making any investment decisions. This publication does not target any specific jurisdiction and is made available on a general informational basis. &copy; 2026 Vivé Macro Ltd. All rights reserved.
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.documentElement.classList.add('js-ready');
+
+    var isAnnual = false;
+    function toggleBilling() { isAnnual = !isAnnual; updateBilling(); }
+    function setBilling(type) { isAnnual = type === 'annual'; updateBilling(); }
+
+    function updateBilling() {
+      try {
+        var toggle = document.querySelector('.toggle-switch');
+        var mLabel = document.querySelector('.toggle-label.monthly');
+        var aLabel = document.querySelector('.toggle-label.annual');
+        var badge = document.querySelector('.save-badge');
+        var prices = document.querySelectorAll('.price-amount');
+        if (!toggle || !mLabel || !aLabel || !badge) return;
+        toggle.classList.toggle('annual', isAnnual);
+        mLabel.classList.toggle('active', !isAnnual);
+        aLabel.classList.toggle('active', isAnnual);
+        badge.classList.toggle('visible', isAnnual);
+        prices.forEach(function(el) {
+          var m = el.dataset.monthly, a = el.dataset.annual;
+          var block = el.closest('.tier-price'); if (!block) return;
+          var period = block.querySelector('.price-period');
+          var equiv = block.querySelector('.annual-equiv');
+          if (isAnnual) {
+            el.innerHTML = '<span class="currency">$</span>' + a;
+            if (period) period.textContent = 'per year';
+            if (equiv) equiv.textContent = '$' + Math.round(parseInt(a.replace(',',''))/12) + '/mo equivalent';
+          } else {
+            el.innerHTML = '<span class="currency">$</span>' + m;
+            if (period) period.textContent = 'per month';
+            if (equiv) equiv.textContent = '';
+          }
+        });
+      } catch(e) { console.warn('Billing error:', e); }
+    }
+
+    try {
+      var els = document.querySelectorAll('.reveal');
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { obs.observe(el); });
+    } catch(e) { document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); }); }
+
+    setTimeout(function() { document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); }); }, 2000);
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) { e.preventDefault(); var t = docum
